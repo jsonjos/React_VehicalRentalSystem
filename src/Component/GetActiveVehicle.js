@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 function DisplayVehicle({vehiclearray}){
     const navigate = useNavigate();
 
-    const bookVehicle=(vehicleId)=>{
+    const bookVehicle=(customerId,vehicleId)=>{
         var customer =JSON.parse(localStorage.getItem("customer")|| "{}");
         const bookvehicle = {
             customerId: customer.data.id,
             vehicleId: vehicleId
         };
-        console.log(bookvehicle);
+        console.log(customer,bookvehicle);
         if (window.confirm("Are you sure you want to book")) {
         AccountService.bookVehicle(customer.customerId)
         .then(
@@ -88,7 +88,7 @@ function GetActiveVehicle() {
             .catch(
                 (err) => {
                     console.log(err.response);
-                    window.alert(err.response.data);
+                    // window.alert(err.response.data);
                 }
             )
         }

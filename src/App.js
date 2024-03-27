@@ -5,6 +5,7 @@ import Login from './Component/Login';
 import Register from './Component/Register';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Logout from './Component/Logout';
+import Payment from './Component/Payment';
 function App() {
   return (
    
@@ -15,6 +16,7 @@ function App() {
       <Route path='/getactive' element={<GetActiveVehicle />}></Route>
       <Route path='/customer/Home' element={<CustomerHome />}></Route>
       <Route path='/logout' element={<Logout/>}></Route>
+      <Route path='/payment' element={<Payment/>} ></Route>
       </Routes>
 
   </BrowserRouter>

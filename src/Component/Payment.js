@@ -1,17 +1,18 @@
 import { useState } from "react";
 import AccountService from "../Service/AccountService";
 import { useNavigate } from 'react-router-dom';
-function Login() {
+function Payment() {
 
-    let [customer, setCustomer] = useState({
-            "customerEmail":'',
-            "customerPassword":''
+    let [payment, setPayment] = useState({
+            "bookingId":'',
+            "noOfDays": '',
+            "customerAccountId":''
     });
 
 
 
     const handleAccountChange = (e) => {
-        setCustomer({ ...customer, [e.target.name]: e.target.value });
+        setPayment({ ...payment, [e.target.name]: e.target.value });
 
     }
     
@@ -20,12 +21,11 @@ function Login() {
     const handleSubmit = (e) => {
         
         e.preventDefault();
-        console.log(customer);
-        AccountService.loginAccount(customer)
+        console.log(payment);
+        AccountService.payment(payment)
             .then(
                 (resp) => {
-                    localStorage.setItem("customer",JSON.stringify(resp));
-                    console.log(resp.data);
+                    console.log(data);
                     Navigate("/customer/Home")
                     
                 }
@@ -53,6 +53,9 @@ function Login() {
     //         </form>
     //         </div>
     //     </>
+    //     "bookingId":'',
+    //"noOfDays": '',
+    //"customerAccountId":''
     // );
     return (
         <div className="container">
@@ -60,42 +63,45 @@ function Login() {
                 <div className="col-md-6">
                     <div className="card mt-5">
                         <div className="card-body">
-                            <h5 className="card-title text-center">Login</h5>
+                            <h5 className="card-title text-center">Payment</h5>
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label htmlFor="userType" style={{ paddingLeft: '10px' }}>Type Of User:</label>
-                                    <br />
-                                    <select id="userType" name="userType">
-                                        <option value="Admin">Admin</option>
-                                        <option value="User">User</option>
-                                    </select>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="customerEmail" className="form-label">Email address</label>
+                                    <label htmlFor="bookingId" className="form-label">Booking Id</label>
                                     <input
-                                        type="email"
+                                        type="number"
                                         className="form-control"
-                                        id="customerEmail"
-                                        name="customerEmail"
-                                        placeholder="Enter your email"
-                                        value={customer.customerEmail} onChange={handleAccountChange} required
+                                        id="bookingId"
+                                        name="bookingId"
+                                        placeholder="Enter your Booking Id"
+                                        value={payment.bookingId} onChange={handleAccountChange} required
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="customerPassword" className="form-label">Password</label>
+                                    <label htmlFor="noOfDays" className="form-label">No Of Days</label>
                                     <input
-                                        type="password"
+                                        type="number"
                                         className="form-control"
-                                        id="customerPassword"
-                                        name="customerPassword"
-                                        placeholder="Enter your password"
-                                        value={customer.customerPassword} onChange={handleAccountChange} required
+                                        id="noOfDays"
+                                        name="noOfDays"
+                                        placeholder="Enter No Of Days"
+                                        value={payment.noOfDays} onChange={handleAccountChange} required
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="customerAccountId" className="form-label">customerAccountId</label>
+                                    <input
+                                        type="number"
+                                        className="form-control"
+                                        id="customerAccountId"
+                                        name="customerAccountId"
+                                        placeholder="Enter Customer Account Id"
+                                        value={payment.customerAccountId} onChange={handleAccountChange} required
                                     />
                                 </div>
                                 <br />
                                 <br />
                                 <div className="text-center">
-                                    <button type="submit" className="btn btn-info">Login</button>
+                                    <button type="submit" className="btn btn-info">Pay</button>
                                 </div>
                             </form>
                         </div>
@@ -106,4 +112,4 @@ function Login() {
     );
     }
 
-export default Login; 
+export default Payment; 
