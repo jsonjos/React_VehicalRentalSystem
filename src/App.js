@@ -1,7 +1,10 @@
 import './App.css';
+import CustomerHome from './Component/CustomerHome';
+import GetActiveVehicle from './Component/GetActiveVehicle';
 import Login from './Component/Login';
 import Register from './Component/Register';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Logout from './Component/Logout';
 function App() {
   return (
    
@@ -9,6 +12,9 @@ function App() {
     <Routes>
       <Route path='/register' element={<Register />}></Route>
       <Route path='/login' element={<Login />}></Route>
+      <Route path='/getactive' element={<GetActiveVehicle />}></Route>
+      <Route path='/customer/Home' element={<CustomerHome />}></Route>
+      <Route path='/logout' element={<Logout/>}></Route>
       </Routes>
 
   </BrowserRouter>

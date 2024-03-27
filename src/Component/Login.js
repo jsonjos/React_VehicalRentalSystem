@@ -24,9 +24,9 @@ function Login() {
         AccountService.loginAccount(customer)
             .then(
                 (resp) => {
+                    localStorage.setItem("customer",JSON.stringify(resp));
                     console.log(resp.data);
-                    
-                    Navigate('/');
+                    Navigate("/customer/Home")
                     
                 }
             )
@@ -38,16 +38,20 @@ function Login() {
         }
         return (
         <>
-            <h3>login Account:</h3>
+            <div class="container1" style={{marginTop:'1%', marginLeft:'35%'}}>
+            <h3>Login Account:</h3>
+            </div>
+            <div style={{marginLeft:'20%'}}>
             <form onSubmit={handleSubmit}>
                 <p>
                     Email: <input type="email" name="customerEmail" value={customer.customerEmail} onChange={handleAccountChange} required></input>
                 </p>
                 <p>
-                password: <input type="password" name="customerPassword" value={customer.customerPassword} onChange={handleAccountChange} required></input>
+                Password: <input type="password" name="customerPassword" value={customer.customerPassword} onChange={handleAccountChange} required></input>
                 </p>
-                <button type="submit">login</button>
+                <button type="submit">Login</button>
             </form>
+            </div>
         </>
     );
 

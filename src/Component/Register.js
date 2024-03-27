@@ -39,7 +39,9 @@ function Register() {
         }
         return (
         <>
+            <div class="container1" style={{marginTop:'10%', marginLeft:'35%'}}>
             <h3>Add new Account:</h3>
+            </div>
             <form onSubmit={handleSubmit}>
                 <p>
                     Name: <input type="text" name="customerName" value={customer.customerName} onChange={handleAccountChange} required></input>
