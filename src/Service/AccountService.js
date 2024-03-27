@@ -13,6 +13,9 @@ class AccountService{
     bookVehicle(vehicleId){
         return axiosInstance.post('http://localhost:8080/home/bookVehicle/'+vehicleId,);
     }
+    payment(payment){
+        return axiosInstance.post('http://localhost:8080/home/amountTransfer/',payment)
+    }
 }
 
 export default new AccountService();
