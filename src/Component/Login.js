@@ -20,40 +20,22 @@ function Login() {
     const handleSubmit = (e) => {
         
         e.preventDefault();
-        console.log(customer);
+        // console.log(customer);
         AccountService.loginAccount(customer)
             .then(
                 (resp) => {
                     localStorage.setItem("customer",JSON.stringify(resp));
                     console.log(resp.data);
                     Navigate("/customer/Home")
-                    
                 }
             )
             .catch(
                 (err) => {
                     console.log(err.response.data);
+                    alert(err.response.data)
                 }
             )
         }
-    //     return (
-    //     <>
-    //         <div class="container1" style={{marginTop:'1%', marginLeft:'35%'}}>
-    //         <h3>Login Account:</h3>
-    //         </div>
-    //         <div style={{marginLeft:'20%'}}>
-    //         <form onSubmit={handleSubmit}>
-    //             <p>
-    //                 Email: <input type="email" name="customerEmail" value={customer.customerEmail} onChange={handleAccountChange} required></input>
-    //             </p>
-    //             <p>
-    //             Password: <input type="password" name="customerPassword" value={customer.customerPassword} onChange={handleAccountChange} required></input>
-    //             </p>
-    //             <button type="submit">Login</button>
-    //         </form>
-    //         </div>
-    //     </>
-    // );
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -62,14 +44,6 @@ function Login() {
                         <div className="card-body">
                             <h5 className="card-title text-center">Login</h5>
                             <form onSubmit={handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="userType" style={{ paddingLeft: '10px' }}>Type Of User:</label>
-                                    <br />
-                                    <select id="userType" name="userType">
-                                        <option value="Admin">Admin</option>
-                                        <option value="User">User</option>
-                                    </select>
-                                </div>
                                 <div className="mb-3">
                                     <label htmlFor="customerEmail" className="form-label">Email address</label>
                                     <input

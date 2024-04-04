@@ -11,13 +11,13 @@ export default function Logout(){
     return(
         <>
         
-        <div class="container1" style={{marginTop:'10%', marginLeft:'35%'}}>
+        <div className="container1" style={{marginTop:'10%', marginLeft:'35%'}}>
     
-        <p> Please remember to log out to protect your account.</p>
+        <p>Logout confirmation?</p>
 
         </div>
         <div>
-        <button style={{backgroundColor: '#C68484',marginTop:'2%', border: '1px solid #ccc', marginLeft:'45%'}} onClick={logout} >LOGOUT</button>
+        <button style={{backgroundColor: 'white',marginTop:'2%', border: '1px solid #ccc', marginLeft:'45%'}} onClick={logout} >LOGOUT</button>
         </div>
     </>
     )

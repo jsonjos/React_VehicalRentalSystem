@@ -26,14 +26,13 @@ function Register() {
             .then(
                 (resp) => {
                     console.log(resp.data);
-
                     Navigate('/login');
-                    
                 }
             )
             .catch(
                 (err) => {
                     console.log(err.response.data);
+                    alert(err.response.data)
                 }
             )
         }

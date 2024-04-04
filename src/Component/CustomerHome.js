@@ -2,14 +2,13 @@ export default function CustomerHome(){
     return(
        <>
         <div className="row lg-12">
-      <div className="col-md-6">
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title"><b>Link Account</b></h5>
-            
-            <a href="/link" className="btn btn-primary">Link</a>
-          </div>
-        </div>
+          <div className="col-md-6">
+            <div className="card">
+                <div className="card-body">
+                  <h5 className="card-title"><b>Link Account</b></h5>
+                  <a href="/link" className="btn btn-primary">Link</a>
+                </div>
+              </div>
       </div>
       <div className="col-lg-6">
         <div className="card">
@@ -28,7 +27,7 @@ export default function CustomerHome(){
           <div className="card-body">
             <h5 className="card-title"><b>Return Vehicles</b></h5>
             
-            <a href="/vehicles/return" className="btn btn-info">Return</a>
+            <a href="/return" className="btn btn-info">Return</a>
           </div>
         </div>
       </div>
