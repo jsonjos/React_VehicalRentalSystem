@@ -5,19 +5,20 @@ import { useEffect, useState } from "react";
 function DisplayVehicle({vehiclearray}){
     const navigate = useNavigate();
 
-    const bookVehicle=(customerId,vehicleId)=>{
-        var customer =JSON.parse(localStorage.getItem("customer")|| "{}");
+    const bookVehicle=(vehicleId)=>{
         const bookvehicle = {
-            customerId: customer.data.id,
             vehicleId: vehicleId
         };
-        console.log(customer,bookvehicle);
+        var customer =JSON.parse(localStorage.getItem("customer")|| "{}");
+        const Id = customer.data.customerId
+        // console.log(customer,bookvehicle);
         if (window.confirm("Are you sure you want to book")) {
-        AccountService.bookVehicle(customer.customerId)
+        AccountService.bookVehicle(Id,bookvehicle)
         .then(
             (resp) => {
+                localStorage.setItem("booking",JSON.stringify(resp));
                 console.log(resp.data);
-                navigate('/customer/Home');
+                navigate('/payment');
                 
             }
         )
@@ -65,50 +66,69 @@ function DisplayVehicle({vehiclearray}){
 
 function GetActiveVehicle() {
     let[vehicles,setvehicles]=useState([]);
-    useEffect(()=>{
-        handleSubmit();
-    },[]);
+    // useEffect(()=>{
+    //     handleSubmit();
+    // },[]);
     let [location, setlocation] = useState({
             "location":'Chennai'
     });
     const handleAccountChange = (e) => {
         setlocation({ ...location, [e.target.name]: e.target.value });
-
+        console.log(location)
     }
     const handleSubmit = (e) => {
-        console.log(location);
-        AccountService.getActiveVehicles(location)
-            .then(
-                (resp) => {
-                    console.log(resp);
-                    setvehicles(resp.data);
-                    
-                }
-            )
-            .catch(
-                (err) => {
-                    console.log(err.response);
-                    // window.alert(err.response.data);
-                }
-            )
-        }
+        console.log(location.location)
+        e.preventDefault();
+        AccountService.getActiveVehicles(location).then(
+            (resp)=>{
+                console.log(resp.data);
+                setvehicles(resp.data);
+                // Navigate('/customer/Home');
+            }
+        )
+        .catch(
+            (err)=>{
+                console.log(err.response);
+            }
+        )
+    }
         return (
         <>
-        
-            <h3>Select location:</h3>
-            <form onSubmit={handleSubmit} >
-                
-                <select id="location" name="location" onChange={handleAccountChange}  value={location.location} required>
-                                <option value="Chennai">Chennai</option>
-                                <option value="Coimbatore">Coimbatore</option>
-                                <option value="Bangalore">Bangalore</option>
-                </select>
-                <br></br>
-                <hr></hr>
-                <button type="submit" >Get</button>
-            </form>
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
+                        <div className="card mt-5">
+                            <div className="card-body">
+                                <form onSubmit={handleSubmit}>
+                                    <select id="location"  name="location" onChange={handleAccountChange}  value={location.location} required>
+                                        <option value="Chennai">Chennai</option>
+                                        <option value="Coimbatore">Coimbatore</option>
+                                        <option value="Bangalore">Bangalore</option>
+                                    </select>
+                                    {/* <div className="mb-3">
+                                    <label htmlFor="location" className="form-label">Location:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="location"
+                                        name="location"
+                                        placeholder="Enter the location"
+                                        value={location.location} onChange={handleAccountChange} required
+                                    />
+                                </div> */}
+                                    <br></br>
+                                    <hr></hr>
+                                    <div className="text-center">
+                                    <button type="submit" className="btn btn-info">Get</button>
+                                </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {
-                vehicles.length>0 ?<DisplayVehicle vehiclearray={vehicles}/>:<h3>No Active Vehicles found</h3>
+                vehicles.length>0 ?<DisplayVehicle vehiclearray={vehicles}/>:<h5>No Active Vehicles found</h5>
             }
         </>
     );

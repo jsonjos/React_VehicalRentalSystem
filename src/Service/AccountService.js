@@ -10,11 +10,20 @@ class AccountService{
         // console.log(location.location);
         return axiosInstance.get("http://localhost:8080/home/viewActive/"+location.location);
     }
-    bookVehicle(vehicleId){
-        return axiosInstance.post('http://localhost:8080/home/bookVehicle/'+vehicleId,);
+    bookVehicle(Id,bookvehicle){
+        return axiosInstance.post('http://localhost:8080/home/bookVehicle/'+Id,bookvehicle);
     }
-    payment(payment){
-        return axiosInstance.post('http://localhost:8080/home/amountTransfer/',payment)
+    payment(Id,payment){
+        return axiosInstance.post('http://localhost:8080/home/amountTransfer/'+Id,payment);
+    }
+    linkAccount(Id,customerAccount){
+        return axiosInstance.post('http://localhost:8080/account/add/'+Id,customerAccount);
+    }
+    deactivateAccount(Id,customerDetails){
+        return axiosInstance.patch('http://localhost:8080/home/deactivate/'+Id,customerDetails);
+    }
+    returnVehicle(vehicle){
+        return axiosInstance.post('http://localhost:8080/home/returnVehicle',vehicle)
     }
 }
 
