@@ -9,6 +9,11 @@ import Payment from './Component/Payment';
 import LinkAccount from './Component/LinkAccount';
 import DeactivateAccount from './Component/DeactivateAccount'
 import ReturnVehicle from './Component/ReturnVehicle';
+import AdminHome from './Component/AdminHome';
+import AddCustomer from './Component/AddCustomer';
+import DeleteCustomerComponent from './Component/DeleteCustomer';
+import ViewCustomers from './Component/ViewCustomers';
+
 function App() {
   return (
    
@@ -23,6 +28,10 @@ function App() {
       <Route path='/link' element={<LinkAccount/>}></Route>
       <Route path='deactivate' element={<DeactivateAccount/>}></Route>
       <Route path='/return' element={<ReturnVehicle/>}></Route>
+      <Route path="addcustomer" element={<AddCustomer />} />
+      <Route path='deletecustomer' element={<DeleteCustomerComponent />}/>
+      <Route path='viewcustomer' element={<ViewCustomers />}/>
+      <Route path='/admin/Home' element={<AdminHome />}></Route>
       </Routes>
 
   </BrowserRouter>
